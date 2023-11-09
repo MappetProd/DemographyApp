@@ -2,8 +2,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemographyApi.Domain;
 
-[Table("NaturalPopulationGrowth")]
-public class Ethnos {
+[Table("NaturalGrowth")]
+public class NaturalGrowth {
     [Column("uuid")]
     public Guid Uuid { get; set; }
 

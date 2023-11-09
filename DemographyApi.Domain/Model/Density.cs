@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemographyApi.Domain;
 
-[Table("age")]
+[Table("density")]
 public class Density
 {
     [Column("uuid")]
