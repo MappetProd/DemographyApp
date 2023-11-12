@@ -1,0 +1,12 @@
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/Demography.Domain.csproj.AssemblyReference.cache
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/Demography.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/Demography.Domain.AssemblyInfoInputs.cache
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/Demography.Domain.AssemblyInfo.cs
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/Demography.Domain.csproj.CoreCompileInputs.cache
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/bin/Debug/net7.0/Demography.Domain.deps.json
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/bin/Debug/net7.0/Demography.Domain.dll
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/bin/Debug/net7.0/Demography.Domain.pdb
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/Demography.Domain.dll
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/refint/Demography.Domain.dll
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/Demography.Domain.pdb
+/Users/elmir/Projects/study/DemographyApp/Demography.Domain/obj/Debug/net7.0/ref/Demography.Domain.dll

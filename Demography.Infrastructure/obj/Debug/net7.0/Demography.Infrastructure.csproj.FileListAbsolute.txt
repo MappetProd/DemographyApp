@@ -1,0 +1,17 @@
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/bin/Debug/net7.0/Demography.Infrastructure.deps.json
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/bin/Debug/net7.0/Demography.Infrastructure.runtimeconfig.json
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/bin/Debug/net7.0/Demography.Infrastructure.dll
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/bin/Debug/net7.0/Demography.Infrastructure.pdb
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/bin/Debug/net7.0/Demography.Domain.dll
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/bin/Debug/net7.0/Demography.Domain.pdb
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.csproj.AssemblyReference.cache
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.AssemblyInfoInputs.cache
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.AssemblyInfo.cs
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.csproj.CopyComplete
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.dll
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/refint/Demography.Infrastructure.dll
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.pdb
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/Demography.Infrastructure.genruntimeconfig.cache
+/Users/elmir/Projects/study/DemographyApp/Demography.Infrastructure/obj/Debug/net7.0/ref/Demography.Infrastructure.dll
