@@ -5,7 +5,7 @@ namespace Demography.Domain;
 [Table("ethnos")]
 public class Ethnos 
 {
-    [Column("Id")]
+    [Column("id")]
     public Guid Id { get; set; }
 
     [Column("name")]
@@ -16,4 +16,6 @@ public class Ethnos
 
     [Column("women_quantity")]
     public int WomenQuantity { get; set; }
+
+    public DemographyData? DemographyData {get; set; }
 }

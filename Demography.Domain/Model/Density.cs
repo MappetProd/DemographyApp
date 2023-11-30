@@ -5,7 +5,7 @@ namespace Demography.Domain;
 [Table("density")]
 public class Density
 {
-    [Column("Id")]
+    [Column("id")]
     public Guid Id { get; set; }
 
     [Column("area_size")]
@@ -16,4 +16,6 @@ public class Density
 
     [Column("population_density")]
     public double PopulationDensity { get; set; }
+
+    public DemographyData? DemographyData {get; set; }
 }

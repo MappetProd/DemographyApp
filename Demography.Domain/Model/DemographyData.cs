@@ -5,7 +5,7 @@ namespace Demography.Domain;
 [Table("demography_data")]
 public class DemographyData
 {
-    [Column("Id")]
+    [Column("id")]
     public Guid Id { get; set; }
 
     [Column("ethnos_id")]

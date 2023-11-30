@@ -5,7 +5,7 @@ namespace Demography.Domain;
 [Table("natural_growth")]
 public class NaturalGrowth 
 {
-    [Column("Id")]
+    [Column("id")]
     public Guid Id { get; set; }
 
     [Column("bith_rate")]
@@ -13,4 +13,6 @@ public class NaturalGrowth
 
     [Column("mortality_rate")]
     public int MortalityRate { get; set; }
+
+    public DemographyData? DemographyData {get; set; }
 }

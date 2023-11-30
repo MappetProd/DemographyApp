@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Demography.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231112132836_InitMigration")]
+    [Migration("20231130142205_InitMigration")]
     partial class InitMigration
     {
         /// <inheritdoc />
@@ -30,15 +30,11 @@ namespace Demography.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
-                    b.Property<int>("AgeFrom")
+                    b.Property<int>("AgeValue")
                         .HasColumnType("integer")
-                        .HasColumnName("age_from");
-
-                    b.Property<int>("AgeTo")
-                        .HasColumnType("integer")
-                        .HasColumnName("age_to");
+                        .HasColumnName("age_value");
 
                     b.Property<Guid?>("DemographyDataId")
                         .HasColumnType("uuid");
@@ -63,7 +59,7 @@ namespace Demography.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<int>("Year")
                         .HasColumnType("integer")
@@ -79,7 +75,7 @@ namespace Demography.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<double>("AreaSize")
                         .HasColumnType("double precision")
@@ -108,7 +104,7 @@ namespace Demography.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<Guid?>("DemographyDataId")
                         .HasColumnType("uuid");
@@ -138,7 +134,7 @@ namespace Demography.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
 
                     b.Property<int>("BithRate")
                         .HasColumnType("integer")
@@ -163,7 +159,10 @@ namespace Demography.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("Id");
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("DemographyDataId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -172,35 +171,54 @@ namespace Demography.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DemographyDataId");
+
                     b.ToTable("region");
                 });
 
             modelBuilder.Entity("Demography.Domain.Age", b =>
                 {
-                    b.HasOne("Demography.Domain.DemographyData", null)
+                    b.HasOne("Demography.Domain.DemographyData", "DemographyData")
                         .WithMany("AgeGroups")
                         .HasForeignKey("DemographyDataId");
+
+                    b.Navigation("DemographyData");
                 });
 
             modelBuilder.Entity("Demography.Domain.Density", b =>
                 {
-                    b.HasOne("Demography.Domain.DemographyData", null)
+                    b.HasOne("Demography.Domain.DemographyData", "DemographyData")
                         .WithMany("DensityGroups")
                         .HasForeignKey("DemographyDataId");
+
+                    b.Navigation("DemographyData");
                 });
 
             modelBuilder.Entity("Demography.Domain.Ethnos", b =>
                 {
-                    b.HasOne("Demography.Domain.DemographyData", null)
+                    b.HasOne("Demography.Domain.DemographyData", "DemographyData")
                         .WithMany("EthnicGroups")
                         .HasForeignKey("DemographyDataId");
+
+                    b.Navigation("DemographyData");
                 });
 
             modelBuilder.Entity("Demography.Domain.NaturalGrowth", b =>
                 {
-                    b.HasOne("Demography.Domain.DemographyData", null)
+                    b.HasOne("Demography.Domain.DemographyData", "DemographyData")
                         .WithMany("NaturalGrowthGroups")
                         .HasForeignKey("DemographyDataId");
+
+                    b.Navigation("DemographyData");
+                });
+
+            modelBuilder.Entity("Demography.Domain.Region", b =>
+                {
+                    b.HasOne("Demography.Domain.DemographyData", "DemographyData")
+                        .WithMany()
+                        .HasForeignKey("DemographyDataId");
+
+                    b.Navigation("DemographyData");
                 });
 
             modelBuilder.Entity("Demography.Domain.DemographyData", b =>
