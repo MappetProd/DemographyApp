@@ -33,8 +33,9 @@ namespace Demography.Infrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("age_value");
 
-                    b.Property<Guid?>("DemographyDataId")
-                        .HasColumnType("uuid");
+                    b.Property<Guid>("DemographyDataId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("demography_data_id");
 
                     b.Property<int>("MenQuantity")
                         .HasColumnType("integer")
@@ -58,11 +59,17 @@ namespace Demography.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<Guid>("RegionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("region_id");
+
                     b.Property<int>("Year")
                         .HasColumnType("integer")
                         .HasColumnName("year");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RegionId");
 
                     b.ToTable("demography_data");
                 });
@@ -78,8 +85,9 @@ namespace Demography.Infrastructure.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("area_size");
 
-                    b.Property<Guid?>("DemographyDataId")
-                        .HasColumnType("uuid");
+                    b.Property<Guid>("DemographyDataId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("demography_data_id");
 
                     b.Property<double>("PopulationDensity")
                         .HasColumnType("double precision")
@@ -103,8 +111,9 @@ namespace Demography.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<Guid?>("DemographyDataId")
-                        .HasColumnType("uuid");
+                    b.Property<Guid>("DemographyDataId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("demography_data_id");
 
                     b.Property<int>("MenQuantity")
                         .HasColumnType("integer")
@@ -121,9 +130,37 @@ namespace Demography.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("ethnos");
+                });
+
+            modelBuilder.Entity("Demography.Domain.Migration", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("DemographyDataId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("demography_data_id");
+
+                    b.Property<int>("EmigrantsCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("emigrants_count");
+
+                    b.Property<int>("MigrantsCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("migrants_count");
+
+                    b.Property<int>("MigrationRatio")
+                        .HasColumnType("integer")
+                        .HasColumnName("migration_ratio");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("DemographyDataId");
 
-                    b.ToTable("ethnos");
+                    b.ToTable("migration");
                 });
 
             modelBuilder.Entity("Demography.Domain.NaturalGrowth", b =>
@@ -137,8 +174,9 @@ namespace Demography.Infrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("bith_rate");
 
-                    b.Property<Guid?>("DemographyDataId")
-                        .HasColumnType("uuid");
+                    b.Property<Guid>("DemographyDataId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("demography_data_id");
 
                     b.Property<int>("MortalityRate")
                         .HasColumnType("integer")
@@ -158,9 +196,6 @@ namespace Demography.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<Guid?>("DemographyDataId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -168,34 +203,64 @@ namespace Demography.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DemographyDataId");
-
                     b.ToTable("region");
+                });
+
+            modelBuilder.Entity("DemographyDataEthnos", b =>
+                {
+                    b.Property<Guid>("DemographyDatumId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("EthnicGroupsId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("DemographyDatumId", "EthnicGroupsId");
+
+                    b.HasIndex("EthnicGroupsId");
+
+                    b.ToTable("DemographyDataEthnos");
                 });
 
             modelBuilder.Entity("Demography.Domain.Age", b =>
                 {
                     b.HasOne("Demography.Domain.DemographyData", "DemographyData")
                         .WithMany("AgeGroups")
-                        .HasForeignKey("DemographyDataId");
+                        .HasForeignKey("DemographyDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DemographyData");
+                });
+
+            modelBuilder.Entity("Demography.Domain.DemographyData", b =>
+                {
+                    b.HasOne("Demography.Domain.Region", "Region")
+                        .WithMany("DemographyDatum")
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Region");
                 });
 
             modelBuilder.Entity("Demography.Domain.Density", b =>
                 {
                     b.HasOne("Demography.Domain.DemographyData", "DemographyData")
                         .WithMany("DensityGroups")
-                        .HasForeignKey("DemographyDataId");
+                        .HasForeignKey("DemographyDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DemographyData");
                 });
 
-            modelBuilder.Entity("Demography.Domain.Ethnos", b =>
+            modelBuilder.Entity("Demography.Domain.Migration", b =>
                 {
                     b.HasOne("Demography.Domain.DemographyData", "DemographyData")
-                        .WithMany("EthnicGroups")
-                        .HasForeignKey("DemographyDataId");
+                        .WithMany("Migrations")
+                        .HasForeignKey("DemographyDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DemographyData");
                 });
@@ -204,18 +269,26 @@ namespace Demography.Infrastructure.Migrations
                 {
                     b.HasOne("Demography.Domain.DemographyData", "DemographyData")
                         .WithMany("NaturalGrowthGroups")
-                        .HasForeignKey("DemographyDataId");
+                        .HasForeignKey("DemographyDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("DemographyData");
                 });
 
-            modelBuilder.Entity("Demography.Domain.Region", b =>
+            modelBuilder.Entity("DemographyDataEthnos", b =>
                 {
-                    b.HasOne("Demography.Domain.DemographyData", "DemographyData")
+                    b.HasOne("Demography.Domain.DemographyData", null)
                         .WithMany()
-                        .HasForeignKey("DemographyDataId");
+                        .HasForeignKey("DemographyDatumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("DemographyData");
+                    b.HasOne("Demography.Domain.Ethnos", null)
+                        .WithMany()
+                        .HasForeignKey("EthnicGroupsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Demography.Domain.DemographyData", b =>
@@ -224,9 +297,14 @@ namespace Demography.Infrastructure.Migrations
 
                     b.Navigation("DensityGroups");
 
-                    b.Navigation("EthnicGroups");
+                    b.Navigation("Migrations");
 
                     b.Navigation("NaturalGrowthGroups");
+                });
+
+            modelBuilder.Entity("Demography.Domain.Region", b =>
+                {
+                    b.Navigation("DemographyDatum");
                 });
 #pragma warning restore 612, 618
         }
