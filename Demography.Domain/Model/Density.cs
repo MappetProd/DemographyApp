@@ -17,5 +17,7 @@ public class Density
     [Column("population_density")]
     public double PopulationDensity { get; set; }
 
+    [Column("demography_data_id")]
+    public Guid DemographyDataId {get; set; }
     public DemographyData? DemographyData {get; set; }
 }

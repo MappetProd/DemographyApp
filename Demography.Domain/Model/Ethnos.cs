@@ -17,5 +17,7 @@ public class Ethnos
     [Column("women_quantity")]
     public int WomenQuantity { get; set; }
 
-    public DemographyData? DemographyData {get; set; }
+    [Column("demography_data_id")]
+    public Guid DemographyDataId {get; set; }
+    public List<DemographyData> DemographyDatum {get; set; } = new();
 }

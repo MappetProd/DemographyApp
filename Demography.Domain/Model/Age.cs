@@ -17,5 +17,7 @@ public class Age
     [Column("age_value")]
     public int AgeValue { get; set; }
 
+    [Column("demography_data_id")]
+    public Guid DemographyDataId {get; set; }
     public DemographyData? DemographyData {get; set; }
 }

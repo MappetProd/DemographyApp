@@ -12,5 +12,5 @@ public class Region
     [Column("name")]
     public required string Name { get; set; }
 
-    public DemographyData? DemographyData {get; set; }
+    public List<DemographyData> DemographyDatum {get; set; } = new ();
 }
