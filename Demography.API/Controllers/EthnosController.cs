@@ -28,7 +28,7 @@ public class EthnosController : ControllerBase
 
     // GET: api/Ethnos
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<EthnosDto>>> GetPersons()
+    public async Task<ActionResult<IEnumerable<EthnosDto>>> GetEthnicGroups()
     {
         var ethnoses = await _ethnosRepository.GetAllAsync();
         if (ethnoses == null)
@@ -40,11 +40,28 @@ public class EthnosController : ControllerBase
 
     // POST: api/Ethnos
     [HttpPost]
-    public async Task<ActionResult<EthnosDto>> PostEthnos(EthnosDto ethnosDto)
+    public async Task<ActionResult<EthnosDto>> PostEthnos(EthnosDto incomingEthnosDto)
     {
+        var ethnosEntity = EthnosDtoMapper.ToEntity(incomingEthnosDto);
+        var addedEthnosEntity = await _ethnosRepository.AddAsync(ethnosEntity);
+        var addedEthnosDto = EthnosDtoMapper.ToDTO(addedEthnosEntity);
+        await _ethnosRepository.AddDemographyDatumAsync(incomingEthnosDto.Id, incomingEthnosDto.DemographyDataId);
+        return addedEthnosDto;
+    }
+
+    // PUT: api/Ethnos
+    [HttpPut("{id}")]
+    public async Task<ActionResult<EthnosDto>> PutEthnos(Guid id, EthnosDto ethnosDto)
+    {
+        if (id != ethnosDto.Id)
+        {
+            return BadRequest();
+        }
+
         var ethnos = EthnosDtoMapper.ToEntity(ethnosDto);
-        var result = await _ethnosRepository.AddAsync(ethnos);
-        var resultDto = EthnosDtoMapper.ToDTO(result);
-        return resultDto;
+
+        var updatedEthnos = await _ethnosRepository.UpdateAsync(ethnos);
+
+        return EthnosDtoMapper.ToDTO(updatedEthnos);
     }
 }
