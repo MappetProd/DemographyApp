@@ -10,4 +10,16 @@ public class EthnosRepository : GenericRepository<Ethnos>, IGenericRepository<Et
     {
         _context = context;
     }
+
+    public async Task AddDemographyDatumAsync(Guid ethnosId, Guid demographyDatumId)
+    {
+        var ethnos = await _context.EthnicGroups.FindAsync(ethnosId);
+        var demographyDatum = await _context.DemographyDatum.FindAsync(demographyDatumId);
+
+        if (ethnos != null && demographyDatum != null)
+        {
+            ethnos.DemographyDatum.Add(demographyDatum);
+            await _context.SaveChangesAsync();
+        }
+    }
 }

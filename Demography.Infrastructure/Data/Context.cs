@@ -13,9 +13,17 @@ namespace Demography.Infrastructure
 
         public DbSet<Region> Regions { get; set; }
         
-        public DbSet<DemographyData> DemographyDatas { get; set; }
+        public DbSet<DemographyData> DemographyDatum { get; set; }
 
         public DbSet<Ethnos> EthnicGroups { get; set; }
+
+        public DbSet<Age> AgeGroupds {get; set; }
+
+        public DbSet<Density> Densities {get; set; }
+
+        public DbSet<Migration> Migrations {get; set; }
+
+        public DbSet<NaturalGrowth> NaturalGrowths {get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
